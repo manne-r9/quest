@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUEST_MAPPER</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="./images/sitelogo.png">
+
+<style>
+      button a {
+    color: inherit; /* Inherit color from button */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Make the link fill the button */
+    width: 100%; /* Ensures the link covers the entire button */
+    height: 100%; /* Ensures the link covers the entire button */
+}
+
+   .navbar .profile-btn {
+    margin-left: 20px; /* Adjust the value to increase/decrease gap */
+}
+
+
+/* Profile Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-btn {
+    background-color: #4ea251; /* Button background */
+    color: white; /* Button text color */
+    padding: 10px 20px;
+    margin-right: 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Style for each item in the dropdown */
+.dropdown-content p, 
+.dropdown-content button {
+    color: black;
+    padding: 10px 12px;
+    text-decoration: none;
+    display: block;
+    background: transparent;
+    border: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0; /* Ensure there's no extra spacing */
+}
+
+/* Adjust for hover effect */
+.dropdown-content button:hover {
+    background-color:rgb(56, 53, 53);
+    color: white;
+    border-radius: 10px;
+}
+
+.dropdown-content p {
+    font-weight: bold;
+    margin-bottom: 10px; /* Space between Welcome message and buttons */
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .profile-btn {
+    background-color: #3e8e41;
+}
+
+ul a{
+    background-color: #bdd2f3; /* Button background */
+    color: white; /* Button text color */
+    padding: 10px 20px;
+    margin-right: 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.modal-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.modal-content li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+
+</style>
+
+</head>
+<body>
+    <!-- NAV bar section -->
+        <section>
+        <header>
+            <nav class="navbar">
+                <span class="hamburger-btn material-symbols-rounded">menu</span>
+                <a href="#" class="logo">
+                    <img src="./images/quest-removebg-preview.png" alt="Quest Mapper">
+                </a>
+                <ul class="links">
+                    <span class="close-btn material-symbols-rounded">close</span>
+                    <li><a href="#slider">Home</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact-us">Contact us</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button class="profile-btn">Profile</button>
+                    <div class="dropdown-content">
+                        <p id="user-name">[User Name]</p>
+                        <button id="view-packages-btn">My Packages</button>
+                       <a href="./start.html" style="text-decoration: none;"><button id="logout-btn">LogOut</button></a> 
+                    </div>
+                </div>      
+            </nav>               
+        </section>
+    <!-- NAV bar section ends -->
+    
+    <!-- Slider Section -->
+    <main>
+        <section aria-label="Travel Destinations">
+            <div id="slider" class="slider" aria-live="polite">
+                <div class="slides">
+
+                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <img src="./images/rome-3550739_1280.jpg" alt="Rome, Italy">
+                        <div class="caption">
+                          <h3>The Eternal City</h3>
+                          <p>Walk through history in Rome with ancient ruins and authentic cuisine.</p>
+                        </div>
+                      </div>
+                   
+          
+              <!-- Slide 2 -->
+              <div class="slide">
+                <img src="./images/calle-akihabara-tokio.webp" alt="Tokyo, Japan">
+                <div class="caption">
+                  <h3>The Heart of Modern Culture</h3>
+                  <p>Dive into Tokyo, where ancient traditions blend with modern technology.</p>
+                </div>
+              </div>
+          
+              <!-- Slide 3 -->
+              <div class="slide">
+                <img src="./images/Bali-Indonesia.png" alt="Bali, Indonesia">
+                <div class="caption">
+                  <h3>Tropical Paradise</h3>
+                  <p>Discover Bali's beaches, jungles, and temples for a tranquil escape.</p>
+                </div>
+              </div>
+          
+              <!-- Slide 4 -->
+              <div class="slide">
+                <img src="./images/csm_Header_New-York_2d17d6f9f7.jpg" alt="New York City, USA">
+                <div class="caption">
+                  <h3>The City That Never Sleeps</h3>
+                  <p>Experience the energy of New York City with its famous skyline and Broadway shows.</p>
+                </div>
+              </div>
+          
+              <!-- Slide 5 -->
+              <div class="slide" aria-hidden="false">
+                <img src="./images/voyage-france-réceptif-rubrique-paris.jpg" alt="Paris, France at night with the Eiffel Tower" />
+                <div class="caption">
+                    <h3>The City of Lights</h3>
+                    <p>Explore the timeless beauty of Paris, home to the Eiffel Tower and the Louvre Museum.</p>
+                </div>
+            </div>
+              
+            </div>
+       
+    
+    
+            <!-- Previous and Next buttons -->
+            <button class="prev" aria-label="Previous Slide">&#10094;</button>
+            <button class="next" aria-label="Next Slide">&#10095;</button>
+        </div>
+    </section>
+    </main>
+    
+    </header>
+        <div class="blur-bg-overlay"></div>
+    
+    
+    <!-- Login And Sign-Up -->    
+        <div class="form-popup">
+            <span class="close-btn material-symbols-rounded">close</span>
+            <div class="form-box login">
+                <div class="form-details">
+                    <h2>Welcome Back</h2>
+                    <p>Please log in using your personal information to stay connected with us.</p>
+                </div>
+                <div class="form-content">
+                    <h2>LOGIN</h2>
+                    <form action="#">
+                        <div class="input-field">
+                            <input type="text" required>
+                            <label>Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" required>
+                            <label>Password</label>
+                        </div>
+                        <a href="#" class="forgot-pass-link">Forgot password?</a>
+                        <button type="submit">Log In</button>
+                    </form>
+                    <div class="bottom-link">
+                        Don't have an account?
+                        <a href="#" id="signup-link">Signup</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-box signup">
+                <div class="form-details">
+                    <h2>Create Account</h2>
+                    <p>To become a part of our community, please sign up using your personal information.</p>
+                </div>
+                <div class="form-content">
+                    <h2>SIGNUP</h2>
+                    <form action="#">
+                        <div class="input-field">
+                            <input type="text" required>
+                            <label>Enter your email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" required>
+                            <label>Create password</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" required>
+                            <label>Confirm password</label>
+                        </div>
+                        <div class="policy-text">
+                            <input type="checkbox" id="policy">
+                            <label for="policy">
+                                I agree the
+                                <a href="#" class="option">Terms & Conditions</a>
+                            </label>
+                        </div>
+                        <button type="submit">Sign Up</button>
+                    </form>
+                    <div class="bottom-link">
+                        Already have an account? 
+                        <a href="#" id="login-link">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Login And Sign-Up Ends Here --> 
+        
+    </section>
+    <!-- Slider Section ends -->
+
+<!-- Packages Section -->
+<section id="packages">
+    <h1>Our Packages</h1>
+    <div class="package-container">
+        <!-- Example Package 1 -->
+        <div class="package-item">
+            <img src="./images/parisnight.png" alt="Paris" class="package-img">
+            <h2>Paris, France</h2>
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+        <!-- Example Package 2 -->
+        <div class="package-item">
+            <img src="./images/pack1.png" alt="Tokyo" class="package-img">
+            <h2>Delhi, India</h2>
+           
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+        <!-- Example Package 3 -->
+        <div class="package-item">
+            <img src="./images/Bali-Indonesia.png" alt="Bali" class="package-img">
+            <h2>Bali, Indonesia</h2>
+           
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+        <!-- Example Package 4 -->
+        <div class="package-item">
+            <img src="./images/rome-3550739_1280.jpg" alt="Paris" class="package-img">
+            <h2>Rome, Italy</h2>
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+        <!-- Example Package 5 -->
+        <div class="package-item">
+            <img src="./images/varanasi.jpg" alt="Tokyo" class="package-img">
+            <h2>Varanasi, India</h2>
+           
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+        <!-- Example Package 6 -->
+        <div class="package-item">
+            <img src="./images/florance.jpg" alt="Bali" class="package-img">
+            <h2>FLORENCE, ITALY</h2>
+           
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+         <!-- Example Package 7 -->
+         <div class="package-item">
+            <img src="./images/egypt.jpg" alt="Paris" class="package-img">
+            <h2>Cairo, Egypt</h2>
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+        <!-- Example Package 8-->
+        <div class="package-item">
+            <img src="./images/uae.jpg" alt="Tokyo" class="package-img">
+            <h2>Dubai, UAE</h2>
+           
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+
+        <!-- Example Package 9 -->
+        <div class="package-item">
+            <img src="./images/tokyojapan.jpg" alt="Bali" class="package-img">
+            <h2>Tokyo, Japan</h2>
+           
+            <button onclick="scrollToBookings()"><a href="./booking.html">Book Now</a></button>
+        </div>
+    </div>
+</section>
+
+
+<!-- Gallery Section -->
+<section id="gallery">
+    <h2><br></h2>
+    <h1>Gallery</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="./images/gal1.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal2.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal3.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal4.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal5.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal6.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal7.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal8.png" alt="Paris">
+        </div>
+        <div class="gallery-item">
+            <img src="./images/gal9.png" alt="Paris">
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Contact Us Section -->
+<section id="contact-us">
+    <h1>Contact Us</h1>
+    <p>For any inquiries, reach us at:</p>
+    <div class="contact-info">
+        <p>Email: batch13_sec_3i.com</p>
+        <p>Phone: 2024202513</p>
+        <p>Follow us on:</p>
+        <div class="social-icons">
+            <img src="./images/facebook.png" alt="Facebook">
+            <img src="./images/logo-instagram-icon.png" alt="Instagram">
+            <img src="./images/twitter.png" alt="Twitter">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<script>
+
+// Slider functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+const slideContainer = document.querySelector('.slides');
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+
+// Show current slide
+function showSlide(index) {
+    currentSlide = (index + totalSlides) % totalSlides;
+    slideContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+// Slide navigation buttons
+nextBtn.addEventListener('click', () => {
+    showSlide(currentSlide + 1);
+    resetAutoSlide();
+});
+prevBtn.addEventListener('click', () => {
+    showSlide(currentSlide - 1);
+    resetAutoSlide();
+});
+
+// Auto-slide functionality
+let autoSlide = setInterval(() => showSlide(currentSlide + 1), 2000);
+
+// Reset auto-slide timer
+function resetAutoSlide() {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(() => showSlide(currentSlide + 1), 2000);
+}
+
+
+    function scrollToBookings() {
+        document.getElementById('bookings').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.links li a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+
+    // Show Profile Dropdown and handle actions
+document.querySelector('.profile-btn').addEventListener('click', () => {
+    const dropdown = document.querySelector('.dropdown-content');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+            // Simulate fetching user name from server/session
+            const userName = localStorage.getItem('userName') || "Teerdha Ganesh"; // Fetch this dynamically
+            document.getElementById('user-name').innerText = `Welcome, ${userName}`; // Set user name dynamically
+        });
+
+
+
+
+
+// Handle My Packages button click and redirect
+document.getElementById('view-packages-btn').addEventListener('click', () => {
+    window.location.href = 'package.html'; // Redirect to package.html
+});
+
+// Function to fetch and display packages in package.html
+if (window.location.pathname === '/package.html') {
+    // Fetch the user's packages
+    const token = localStorage.getItem('jwt'); // Retrieve the token from localStorage (if stored there)
+    
+    fetch('/get-packages', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(packages => {
+        const packageList = document.getElementById('package-list');
+        
+        if (packages.length > 0) {
+            packages.forEach(pkg => {
+                const packageItem = document.createElement('div');
+                packageItem.classList.add('package-item');
+                packageItem.innerHTML = `
+                    <p><strong>From:</strong> ${pkg.from}</p>
+                    <p><strong>Destination:</strong> ${pkg.destination}</p>
+                    <p><strong>How Many:</strong> ${pkg.howMany}</p>
+                    <p><strong>Total Price:</strong> $${pkg.totalPrice}</p>
+                    <p><strong>Type:</strong> ${pkg.type}</p>
+                `;
+                packageList.appendChild(packageItem);
+            });
+        } else {
+            packageList.innerHTML = '<p>No packages booked yet.</p>';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching packages:', error);
+        document.getElementById('package-list').innerHTML = '<p>Error loading packages.</p>';
+    });
+}
+
+</script>
+
+</body>
+</html>

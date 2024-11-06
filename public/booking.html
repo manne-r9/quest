@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUEST_MAPPER</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./images/sitelogo.png">
+    <style>
+        body {
+    height: 100vh;
+    width: 100%;
+    background: url("./images/bookmain.png") center/cover;
+}
+
+.popup-container {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.close-popup {
+    font-size: 24px;
+    color: red;
+    cursor: pointer;
+    float: right;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn,
+.action-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.submit-btn:hover,
+.action-btn:hover {
+    background-color: #45a049;
+}
+
+/* Styling for events */
+.booking-container {
+    width: 100%;
+}
+
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px; /* Adds space between packages */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+.left-section {
+    margin-left: 20px;
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.booking-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Hover effect: Slight zoom and shadow */
+.booking-item:hover {
+    transform: scale(1.02); /* Slight zoom */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+}
+
+/* Centering the table inside the right-section div */
+.right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.right-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.right-section table {
+    width: 80%; /* Adjust width of the table as needed */
+    max-width: 600px;
+    margin: 0 auto; /* Centers the table */
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.right-section th,
+.right-section td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.right-section th {
+    text-align: right;
+    font-weight: bold;
+}
+
+.right-section td {
+    text-align: left;
+}
+
+.right-section p {
+    text-align: center;
+}
+
+    </style>
+    
+</head>
+
+<body>
+
+    <!-- Bookings Section -->
+    <section id="bookings">
+        <h1>Booking Section</h1>
+        <div class="booking-container">
+            <!-- Paris -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/parisnight.png" alt="Paris" class="booking-img">
+                    <h2>Paris, France</h2>
+                    <button class="book-btn" data-destination="Paris">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Bastille Day, Paris Fashion Week</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Eiffel Tower, Louvre Museum, French Cuisine</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>April to June, October to November</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Delhi -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/pack1.png" alt="Delhi" class="booking-img">
+                    <h2>Delhi, India</h2>
+                    <button class="book-btn" data-destination="Delhi">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Republic Day Parade, Diwali Festival</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>India Gate, Red Fort, Street Food</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>October to March</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Bali -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/Bali-Indonesia.png" alt="Bali" class="booking-img">
+                    <h2>Bali, Indonesia</h2>
+                    <button class="book-btn" data-destination="Bali">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Bali Arts Festival, Galungan</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Beaches, Temples, Scuba Diving</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>April to October</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Rome -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/rome-3550739_1280.jpg" alt="Rome" class="booking-img">
+                    <h2>Rome, Italy</h2>
+                    <button class="book-btn" data-destination="Rome">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Roman Carnival, Festa della Repubblica</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Colosseum, Vatican City, Italian Cuisine</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>April to June, September to October</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Varanasi -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/varanasi.jpg" alt="Varanasi" class="booking-img">
+                    <h2>Varanasi, India</h2>
+                    <button class="book-btn" data-destination="Varanasi">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Dev Deepawali, Ganga Aarti</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Temples, Ghats, Spiritual Atmosphere</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>November to February</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Florence -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/florance.jpg" alt="Florence" class="booking-img">
+                    <h2>Florence, Italy</h2>
+                    <button class="book-btn" data-destination="Florence">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Scoppio del Carro, Pitti Immagine</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Renaissance Art, Museums, Cathedrals</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>May to September</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Cairo -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/egypt.jpg" alt="Cairo" class="booking-img">
+                    <h2>Cairo, Egypt</h2>
+                    <button class="book-btn" data-destination="Cairo">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Cairo International Film Festival, Ramadan Celebrations</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Pyramids of Giza, Museums, Islamic Architecture</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>October to April</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Dubai -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/uae.jpg" alt="Dubai" class="booking-img">
+                    <h2>Dubai, UAE</h2>
+                    <button class="book-btn" data-destination="Dubai">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Dubai Shopping Festival, New Year's Eve</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Skyscrapers, Desert Safaris, Shopping</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>November to March</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+            <!-- Tokyo -->
+            <div class="booking-item">
+                <div class="left-section">
+                    <img src="./images/tokyojapan.jpg" alt="Tokyo" class="booking-img">
+                    <h2>Tokyo, Japan</h2>
+                    <button class="book-btn" data-destination="Tokyo">Book Package</button>
+                </div>
+                <div class="right-section">
+                    <h3>Events</h3>
+                    <table>
+                        <tr>
+                            <th>Special Events:</th>
+                            <td>Cherry Blossom Festival, Tokyo Marathon</td>
+                        </tr>
+                        <tr>
+                            <th>Known For:</th>
+                            <td>Temples, Skyscrapers, Sushi</td>
+                        </tr>
+                        <tr>
+                            <th>Best Visit Dates:</th>
+                            <td>March to April, October to November</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </section>
+
+    <!-- Main Booking Popup -->
+<div id="booking-popup" class="popup-container">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <h2>Book Your Package</h2>
+        <form id="main-booking-form">
+            <label for="from">From:</label>
+            <input type="text" id="from" name="from" value="India" readonly>
+
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" required readonly>
+
+            <label for="how-many">How Many People:</label>
+            <input type="number" id="how-many" name="how-many" required min="1" value="1">
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" readonly>
+
+            <button type="button" class="action-btn" id="book-flight-btn">Book Package</button>
+        </form>
+    </div>
+</div>
+
+<!-- Flight Booking Popup -->
+<div id="flight-popup" class="popup-container">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <h2>Book Your Flight</h2>
+        <form id="flight-form">
+            <label for="flight-start-date">Start Date:</label>
+            <input type="date" id="flight-start-date" name="from-date" required>
+
+            <label for="flight-return-date">Return Date:</label>
+            <input type="date" id="flight-return-date" name="to-date" required>
+
+            <label for="flight-type">Flight Type:</label>
+            <select id="flight-type" name="flight-type" required>
+                <option value="normal">Normal</option>
+                <option value="luxury">Luxury</option>
+                <option value="ultra-luxury">Ultra Luxury</option>
+            </select>
+
+            <button type="submit" class="action-btn" id="book-flight-btn" style="background-color: blueviolet;">Book Flight</button>
+        </form>
+    </div>
+</div>
+
+<!-- Hotel Booking Popup -->
+<div id="hotel-popup" class="popup-container">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <h2>Book Your Hotel</h2>
+        <form id="hotel-form">
+            <label for="hotel-from-date">From Date:</label>
+            <input type="date" id="hotel-from-date" name="hotel-from-date" required>
+
+            <label for="hotel-to-date">Check-Out Date:</label>
+            <input type="date" id="hotel-to-date" name="hotel-to-date" required>
+
+            <label for="room-type">Room Type:</label>
+            <select id="room-type" name="room-type" required>
+                <option value="standard">Standard</option>
+                <option value="deluxe">Deluxe</option>
+                <option value="suite">Suite</option>
+            </select>
+
+            <button type="submit" class="action-btn">Book Hotel</button>
+        </form>
+    </div>
+</div>
+
+
+    <!-- Contact Us Section -->
+    <section id="contact-us">
+        <h1>Contact Us</h1>
+        <p>For any inquiries, reach us at:</p>
+        <div class="contact-info">
+            <p>Email: batch13_sec_3i.com</p>
+            <p>Phone: 2024202513</p>
+            <p>Follow us on:</p>
+            <div class="social-icons">
+                <img src="./images/facebook.png" alt="Facebook">
+                <img src="./images/logo-instagram-icon.png" alt="Instagram">
+                <img src="./images/twitter.png" alt="Twitter">
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        const bookingButtons = document.querySelectorAll('.book-btn');
+        const bookingPopup = document.getElementById('booking-popup');
+        const flightPopup = document.getElementById('flight-popup');
+        const hotelPopup = document.getElementById('hotel-popup');
+        const closeButtons = document.querySelectorAll('.close-popup');
+        const destinationInput = document.getElementById('destination');
+        const priceInput = document.getElementById('price');
+        const howManyInput = document.getElementById('how-many');
+        const bookFlightButton = document.getElementById('book-flight-btn');
+        const bookHotelButton = document.getElementById('book-hotel-btn');
+        
+        const destinationPrices = {
+            "Paris": 8000,
+            "Delhi": 2000,
+            "Bali": 5000,
+            "Rome": 9000,
+            "Varanasi": 3000,
+            "Florence": 8500,
+            "Cairo": 7000,
+            "Dubai": 6000,
+            "Tokyo": 11000
+        };
+    
+        let flightBookingData = {}; // To store flight booking details
+        let hotelBookingData = {};  // To store hotel booking details
+        
+        // Show booking popup and fill in the destination and initial price
+        bookingButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const destination = button.getAttribute('data-destination');
+                destinationInput.value = destination;
+                const numberOfPeople = howManyInput.value || 1; // Default to 1 if empty
+                priceInput.value = destinationPrices[destination] * numberOfPeople;
+                bookingPopup.style.display = 'flex';
+            });
+        });
+    
+        // Update price when the number of people changes
+        howManyInput.addEventListener('input', () => {
+            const destination = destinationInput.value;
+            const numberOfPeople = howManyInput.value || 1;
+            priceInput.value = destinationPrices[destination] * numberOfPeople;
+        });
+    
+        // Close popup functionality
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                bookingPopup.style.display = 'none';
+                flightPopup.style.display = 'none';
+                hotelPopup.style.display = 'none';
+            });
+        });
+    
+        // Show flight booking popup and set price
+        bookFlightButton.addEventListener('click', () => {
+            const numberOfPeople = howManyInput.value || 1;
+            priceInput.value = destinationPrices[destinationInput.value] * numberOfPeople;
+            bookingPopup.style.display = 'none';
+            flightPopup.style.display = 'flex';
+        });
+    
+        // Handle flight booking form submission
+        document.getElementById('flight-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            flightBookingData = {
+                from: 'India', // Default from value
+                destination: destinationInput.value,
+                howMany: Number(howManyInput.value),
+                price: Number(priceInput.value),
+                flightStartDate: document.getElementById('flight-start-date').value,
+                flightReturnDate: document.getElementById('flight-return-date').value,
+                flightType: document.getElementById('flight-type').value,
+                type: 'flight', // Specify the type for flight bookings
+            };
+    
+            // Close the flight popup and open the hotel booking popup
+            flightPopup.style.display = 'none';
+            hotelPopup.style.display = 'flex';
+        });
+    
+        // Handle hotel booking form submission
+        document.getElementById('hotel-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            hotelBookingData = {
+                from: 'India', // Default from value
+                destination: destinationInput.value,
+                howMany: Number(howManyInput.value),
+                price: Number(priceInput.value),
+                hotelFromDate: document.getElementById('hotel-from-date').value,
+                hotelToDate: document.getElementById('hotel-to-date').value,
+                roomType: document.getElementById('room-type').value,
+                type: 'hotel', // Specify the type for hotel bookings
+            };
+    
+            // Combine flight and hotel data into a single request
+            const combinedBookingData = {
+                ...flightBookingData,
+                ...hotelBookingData,
+                type: 'package' // Set the type to 'package' for the combined booking
+            };
+    
+            try {
+                const response = await fetch('/api/book', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(combinedBookingData),
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+    
+                const result = await response.json();
+                alert(result.message); // Show a single success or error message after both bookings
+                if (result.booking) {
+                    console.log('Combined booking details:', result.booking); // Log booking details
+                }
+    
+                hotelPopup.style.display = 'none'; // Close hotel popup after submission
+    
+            } catch (error) {
+                console.error('Error during combined booking:', error);
+                alert('Booking failed! ' + error.message); // Show detailed error message
+            }
+        });
+    </script>
+    
+    
+    
+    
+</body>
+
+</html>
